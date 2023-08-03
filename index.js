@@ -1,53 +1,56 @@
-//Importamos bibliotecas
+//importamos bibliotecas
 const path = require('path');
-const fs = require('fs'); //para leer
-//Existe mdlinks como funcion
-const mdLinks = () => {
-  //prueba 1 creo que no sirve JAJA :(( 
-  fs.existsSync( path )
-  console.log("si ejecuta")
-  //escogemos archivo
-  const relativePath = process.argv[2];
-  let userPath
-  //Es absoluta??
-  if (!path.isAbsolute(relativePath)) {
-    //si no ->
-    userPath = path.resolve(relativePath);
-
-  }else{
-    userPath = relativePath
-  }
-  //verificamos que sea archivo md
- if (path.extname(userPath)=== ".md") {
- console.log("el archivo es un .md")
- }
+const fs = require('fs');
  
- else{ return;
-  console.error(err)
+const mdLinks = (route) => {
+console.log(route)
+  const relativePath = process.argv[2]; // Renombramos relativePath a filePath para mayor claridad
+  
+  if (!fs.existsSync(relativePath)) {
+    console.log("El archivo no existe.");
+    return;
+  }
 
- }
- //Pasamos los datos a un array y filtramos los linkss 
+  const userPath = path.resolve(relativePath); //Solo convierte a ruta absoluta sin verificar si era o no ya que si si e ra no afecta en nada y si no  cumple con el proceso
+  
+  if (path.extname(userPath) === ".md") { //Vemos si es un archivo md o nopi
+    console.log("El archivo es un archivo Markdown (.md).");
+  } else {
+    console.error("El archivo no es un archivo Markdown válido."); //si no es pues nos marca error
+    return;
+  }
 
- if(userPath.md){
-  fs.readFile(process.argv[2], 'utf8', (err, data)) => {
+  fs.readFile(userPath, 'utf8', (err, data) => { //entramos al archivo
     if (err) {
-        console.error(err);
-        return;
-        console.log(data);
-        //meter links en array nuevo
-          let arreglo = data.split("()")
-          console.log(arreglo);
-          //podriamos usar regex pq filtrar por espacios no esta sirviendo :(, preguntar si si
-    }   
- }
+      console.error(err);
+      return;
+    } else {
+      // Usamos una regex para encontrar los links
+      const findLinksMd = /\[([^\]]+)\]\(([^)]+)\)/g;
+      const links = [];
+
+      // Agregamos los enlaces que cumplan con esos parametros del regex al array
+      data.replace(findLinksMd, (match, text, url) => {
+        links.push({ text, url });
+      });
+//if there are 0 pues no hay
+      if (links.length === 0) {
+        console.log("No se encontraron enlaces en el archivo.");
+      } else { //if not pues si hay
+        console.log("Enlaces encontrados:");
+        links.forEach(link => {
+          console.log(`Texto: ${link.text}\nURL: ${link.url}\n`);
+        });
+      }
+    }
+  });
 };
- // Mostrar opciones
-    // recibir input del usurio
-}
+
 mdLinks();
 
+
 const separateLinks = /\[([^\]]+)\]\(([^)]+)\)/;
-const findLinksMd = /\[([^\]]+)\]\(([^)]+)\)/g;
+
 const verifyValidUrl = 
   /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 

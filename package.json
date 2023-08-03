@@ -17,9 +17,8 @@
   },
   "dependencies": {
     "axios": "^1.4.0"
-  }
-}
-{
+  },
+
   "scripts": {
     "test": "jest"
   },
@@ -28,7 +27,5 @@
       "^.+\\.[t|j]sx?$": "babel-jest"
     }
   }
-}
-{
-  "presets": ["@babel/preset-env"]
+
 }
