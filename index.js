@@ -1,4 +1,5 @@
 //importamos bibliotecas
+const axios = require('axios')
 const path = require('path');
 const fs = require('fs');
  
@@ -41,16 +42,37 @@ console.log(route)
         links.forEach(link => {
           console.log(`Texto: ${link.text}\nURL: ${link.url}\n`);
         });
+      
+      }
+      //inicio de validate
+      for (const link of links) {
+        console.log(`Texto: ${link.text}\nURL: ${link.url}\n`);
+        if (process.argv.includes('--validate')) {
+          axios.get(link.url).then(response =>{
+
+            if (response.status >= 200 && response.status < 300) {
+              console.log(`Estado: OK (${response.status})\n`);
+            } else {
+              console.log(`Estado: Fallido (${response.status})\n`);
+            }
+
+          }).catch(error => {console.log(`Estado: Fallido (${error.message ? error.message : 'Desconocido'})\n`)});
+            //console.log(error.message)
+            //console.log(`Estado: Fallido (${error.response ? error.response.status : 'Desconocido'})\n`);
+          
+        }
       }
     }
   });
 };
 
+
+
+
 mdLinks();
 
 
-const separateLinks = /\[([^\]]+)\]\(([^)]+)\)/;
+//const separateLinks = /\[([^\]]+)\]\(([^)]+)\)/;
 
-const verifyValidUrl = 
-  /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
+//const verifyValidUrl =  /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
