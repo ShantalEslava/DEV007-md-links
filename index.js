@@ -2,10 +2,15 @@
 const axios = require('axios')
 const path = require('path');
 const fs = require('fs');
+
  
 const mdLinks = (route) => {
+  return new Promise((resolve, reject) => {
+
+
+  
 console.log(route)
-  const relativePath = process.argv[2]; // Renombramos relativePath a filePath para mayor claridad
+const relativePath = route // Renombramos relativePath a filePath para mayor claridad
   
   if (!fs.existsSync(relativePath)) {
     console.log("El archivo no existe.");
@@ -39,30 +44,10 @@ console.log(route)
         console.log("No se encontraron enlaces en el archivo.");
       } else { //if not pues si hay
         console.log("Enlaces encontrados:");
-        links.forEach(link => {
-          console.log(`Texto: ${link.text}\nURL: ${link.url}\n`);
-        });
-      
-      }
-      //inicio de validate
-      for (const link of links) {
-        console.log(`Texto: ${link.text}\nURL: ${link.url}\n`);
-        if (process.argv.includes('--validate')) {
-          axios.get(link.url).then(response =>{
-
-            if (response.status >= 200 && response.status < 300) {
-              console.log(`Estado: OK (${response.status})\n`);
-            } else {
-              console.log(`Estado: Fallido (${response.status})\n`);
-            }
-
-          }).catch(error => {console.log(`Estado: Fallido (${error.message ? error.message : 'Desconocido'})\n`)});
-            //console.log(error.message)
-            //console.log(`Estado: Fallido (${error.response ? error.response.status : 'Desconocido'})\n`);
-          
-        }
+        resolve(links)
       }
     }
+  })
   });
 };
 
@@ -76,3 +61,4 @@ mdLinks();
 
 //const verifyValidUrl =  /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/;
 
+module.exports = mdLinks
