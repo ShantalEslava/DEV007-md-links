@@ -21,7 +21,7 @@
 
 Descubre una forma eficaz de gestionar tus enlaces en archivos Markdown con MdLinks. Optimiza tu flujo de trabajo, ahorra tiempo y garantiza la integridad de tus recursos en línea con esta herramienta versátil y potente. Lo mejor es que MdLinks se integra perfectamente con npm, lo que significa que su instalación y despliegue son tan sencillos como los comandos que ofrece. 
 
-![portadaTech](C:\Users\Shanty\Desktop\Laboratoria\mdLinks\DEV007-md-links\images\imagentechportada.jpg)
+![portadaTech](/images/imagentechportada.jpg)
 
 ## 2. Descripción
 
@@ -99,9 +99,9 @@ Enlaces únicos:  75
 El proyecto se ideó inicialmente trazando su curso en un diagrama de flujo, esbozando de manera visual las etapas y secuencias clave que guiarían su desarrollo. Este diagrama proporcionó una hoja de ruta clara al equipo, delineando las interconexiones entre tareas y decisiones cruciales en el proyecto.
 
 
-![portadaTech](C:\Users\Shanty\Desktop\Laboratoria\mdLinks\DEV007-md-links\images\diagramawhimscal.png)
+![portadaTech](/images/diagramawhimscal.png)
 
 ## 5. Control de calidad y Testeo
 El control de calidad se implementó mediante la ejecución de tests, estableciendo una estructura que permitió evaluar de manera sistemática cada componente del proyecto. A través de estos tests, se verificó la funcionalidad y el rendimiento, identificando posibles errores y asegurando que el resultado final cumpliera con los estándares requeridos.
 
-![portadaTech](C:\Users\Shanty\Desktop\Laboratoria\mdLinks\DEV007-md-links\images\testimage1.png)
+![portadaTech](/images/testimage1.png)
