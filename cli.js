@@ -28,10 +28,10 @@ let stats = process.argv.includes('--stats' )
         })
     } 
     if(stats) {
-        console.log(response.length)
+        console.log("Total: ", response.length)
         //aqui va el set
         let unicos = new Set(response.map((link) =>link.url)).size //Set es una estructura de datos que solo permite elementos únicos
-        console.log(unicos)
+        console.log("Enlaces únicos: ", unicos)
 
     }
     
