@@ -2,19 +2,21 @@
 const axios = require('axios')
 const path = require('path');
 const fs = require('fs');
-const functions = require('./functions.js')
+const functions = require('./functions.js');
+const { isTypedArray } = require('util/types');
+
 
 const mdLinks = (route) => {
   return new Promise((resolve, reject) => {
 
 
 
-console.log(route)
+//console.log(route)
 const relativePath = route
   //esto ya esta en test (1)
   if (!fs.existsSync(relativePath)) {
     console.log("El archivo no existe.");
-    return;
+    return; //ayer se me había roto todo porque me faltaba este return    D,:
 
   }
 
